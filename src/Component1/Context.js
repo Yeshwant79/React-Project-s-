@@ -21,7 +21,13 @@ const AppProvider = ({children}) =>{
         }
         catch(error){console.log(error)}
     }
-    useEffect(() => {getApi()}, [search])
+    useEffect(() => {
+        const TimeOut = setTimeout(()=>{
+            getApi()
+        },2000)
+
+        return () =>{clearTimeout(TimeOut)}
+    }, [search])
     
     return <mes.Provider value={{item, setSearch ,loading}}>
         {children}
